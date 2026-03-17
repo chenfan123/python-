@@ -29,3 +29,16 @@ car.stop()
 
 print(car)
 # 类和对象的关系：类是对象的抽象，对象是类的具体实例。
+
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def say(self):
+        print(f'{self.name}说：你好')
+
+person = Person('张三', 18)
+print(person.name)
+print(person.age)
+person.say()
