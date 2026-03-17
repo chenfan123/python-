@@ -18,3 +18,26 @@
 ###### 多态
 
 不同类的对象对同一消息作出相应，即同一个函数在不同场景下表现出不同形态。
+
+### 类
+
+类是对象的抽象，对象是类的具体实例。
+
+定义方法必须要写 self 参数，self 代表当前对象
+
+```python
+class Car:
+    # 属性
+    name = '宝马'
+    price = 1000000
+    # 行为
+    def run(self):
+        print(f'{self.name}在行驶')
+
+    def stop(self):
+        print(f'{self.name}在停止')
+```
+
+##### self
+
+是 python 内置的关键字，用于指向对象实例本身。

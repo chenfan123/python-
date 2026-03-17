@@ -4,3 +4,28 @@
 # 封装:隐藏对象的属性和实现细节，仅提供对外的方法让别人去访问
 # 继承:子类继承父类的属性和方法，使得子类对象具有父类的特征和行为
 # 多态: 是指不同类的对象对同一消息作出相应，即同一个函数在不同场景下表现出不同形态。
+
+
+class Car:
+    # 属性
+    name = '宝马'
+    price = 1000000
+    # 行为
+
+    # 定义函数需要增加self参数，self代表当前对象
+    def run(self):
+        # print(self)  # <__main__.Car object at 0x100abb590>
+        print(f'{self.name}在行驶')
+
+    def stop(self):
+        print(f'{self.name}在停止')
+
+
+car = Car()
+print(car.name)  # 宝马
+print(car.price)  # 1000000
+car.run()
+car.stop()
+
+print(car)
+# 类和对象的关系：类是对象的抽象，对象是类的具体实例。
