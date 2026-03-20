@@ -7,6 +7,11 @@
 - 并发 ： 在一段时间内，交替执行任务
 - 并行 ： 在一段时间内，真正的同时一起执行多个任务，必须要多核
 
+CPU 调度资源策略
+
+1. 均分时间片
+2. 抢占式调度
+
 ### 进程
 
 是 CPU **资源分配**的最小单位，是**操作系统进行资源分配和调度运行的基本单位**。
@@ -50,3 +55,54 @@ daemon: 是否守护进程，一般不使用
 线程用来实现多任务编程，是 cpu **调度**的基本单位，每个进程至少都有一个线程，而这个线程就是主线程，主线程可以创建子线程。
 
 #### 线程的创建
+
+```python
+"""
+1. 导包：import threading
+2. 创建线程：threading.Thread(target=函数名,name=None,args=(传递的参数1,传递的参数2),kwargs={})
+3. 启动线程：线程对象.start()
+
+"""
+import threading
+import time
+
+def task1():
+    for i in range(1,3):
+        print(f'i:{i}')
+        time.sleep(0.2)
+    print('task1')
+
+def task2():
+    for i in range(1,3):
+        print(f'j:{i}')
+        time.sleep(0.2)
+    print('task2')
+
+if __name__ == '__main__':
+    t1 = threading.Thread(target=task1)
+    t2 = threading.Thread(target=task2)
+    t1.start()
+    t2.start()
+```
+
+##### 线程的注意事项
+
+1. 线程之间执行是无序的(看 34-线程特点.py)
+2. 主线成会等待所有的字线程执行结束再结束(看 35-守护主线程.py)
+3. 线程之间共享全局变量
+4. 线程之间共享全局变量数据出现错误问题，可以使用互斥锁解决。
+
+###### 守护线程
+
+主线程执行结束，想要销毁子线程不再执行，可以使用守护线程。
+
+两种方式：
+
+1. threading.Thread(target=函数名,daemon=True)
+2. 线程对象.daemon = True
+
+###### 共享全局变量
+
+存在的问题：
+
+1. 累加次数不够，原因：线程 1 还没来得及执行完（一个完整的动作）前，被线程 2 抢走了资源，就可能出问题。
