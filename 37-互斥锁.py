@@ -3,20 +3,26 @@
 import threading
 
 g_num = 0
+# 创建互斥锁
+mutex = threading.Lock()
 
 
 def sun_num1():
-    for i in range(100000000):
+    mutex.acquire() # 上锁
+    for i in range(1000000):
         global g_num
         g_num += 1
     print("sun_num1", g_num)
+    mutex.release() # 释放锁
 
 
 def sum_num2():
-    for i in range(100000000):
+    mutex.acquire() # 上锁
+    for i in range(1000000):
         global g_num
         g_num += 1
     print("sum_num2", g_num)
+    mutex.release() # 释放锁
 
 
 if __name__ == '__main__':
