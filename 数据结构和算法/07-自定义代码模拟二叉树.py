@@ -87,11 +87,25 @@ class BinaryTree:
 
     def in_order(self, node):
         "深度优先之中序遍历（左根右）"
-        pass
+        if node is None:
+            return
+        # 先打印左子节点
+        self.in_order(node.left)
+        # 再打印根节点
+        print(node.item, end=' ')
+        # 最后打印右子节点
+        self.in_order(node.right)
 
     def post_order(self, node):
         "深度优先之后续遍历（左右根）"
-        pass
+        if node is None:
+            return
+        # 先打印左子节点
+        self.post_order(node.left)
+        # 再打印右子节点
+        self.post_order(node.right)
+        # 最后打印根节点
+        print(node.item, end=' ')
 
     def dm01_t(self):
         node1 = Node(1)
