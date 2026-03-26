@@ -106,6 +106,7 @@ class BinaryTree:
         self.post_order(node.right)
         # 最后打印根节点
         print(node.item, end=' ')
+    # 二叉树反推：知道中序后，通过先序或者后序就可以推出二叉树的结构
 
     def dm01_t(self):
         node1 = Node(1)
